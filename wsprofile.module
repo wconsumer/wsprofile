@@ -1,0 +1,26 @@
+<?php
+use Wsprofile\Wsprofile;
+use Drupal\wconsumer\Service\Base as Service;
+require_once(__DIR__.'/autoload.php');
+
+
+/**
+ * Implements hook_wconsumer_define_required_scopes().
+ */
+function wsprofile_wconsumer_define_required_scopes(Service $service) {
+  return Wsprofile::instance()->defineRequiredScopes($service);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function wsprofile_block_info() {
+  return Wsprofile::instance()->defineBlocks();
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function wsprofile_block_view($delta = '') {
+  return Wsprofile::instance()->viewBlock($delta);
+}

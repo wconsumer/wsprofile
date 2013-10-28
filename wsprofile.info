@@ -1,0 +1,5 @@
+name = "Web Service Profile"
+description = Module provides blocks for each supported service displaying external user profile info
+core = 7.x
+php = 5.3
+dependencies[] = wconsumer
