@@ -12,7 +12,7 @@ There is no CSS stylesheets delivered with this module. So the blocks' look and 
 depending on your current theme.
 
 Here is how it looks with default Drupal installation:
-![Screenshot](../blob/master/screenshot.png?raw=true)
+![Screenshot](screenshot.png?raw=true)
 
 
 Blocks currently available:
