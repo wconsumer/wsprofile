@@ -8,7 +8,7 @@ Each block require some permission set (scope) to access user profile data. User
 permissions to get block visible. If there is no enough permissions to fetch all required user profile data block
 will not be displayed until user re-authorize service (by 'revoke/allow access to my %service% account' buttons).
 
-There is no CSS stylesheets delivered with this module. So the blocks' look and feel may need to be customized
+There is no CSS stylesheet delivered with this module. So the blocks' look and feel may need to be customized
 depending on your current theme.
 
 Here is how it looks with default Drupal installation:
