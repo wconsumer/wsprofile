@@ -28,4 +28,24 @@ abstract class Block implements BlockInterface {
     $response = $api->get($url)->send()->json();
     return $response;
   }
+
+  protected function doRender(array $list, $url) {
+    ob_start();
+      ?>
+        <? if (!empty($list)): ?>
+          <ul>
+            <? foreach ($list as $item): ?>
+              <li>
+                <?= check_plain($item[1]) ?>
+                <span><?= check_plain($item[0]) ?></span>
+              </li>
+            <? endforeach; ?>
+          </ul>
+        <? endif; ?>
+        <? if (!empty($url)): ?>
+          <a href="<?= check_plain($url) ?>" target="_blank">Visit Profile</a>
+        <? endif; ?>
+      <?php
+    return ob_get_clean();
+  }
 }
