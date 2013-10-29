@@ -6,7 +6,7 @@ use Drupal\wconsumer\Service\Base as Service;
 
 interface BlockInterface {
   public function scopes();
-  public function render();
+  public function render(\stdClass $account);
 
   /** @return Service */
   public function getService();

@@ -11,9 +11,9 @@ class Github extends Block {
     return array();
   }
 
-  public function render() {
+  public function render(\stdClass $account) {
     $url = null; {
-      $user = $this->fetch('/user');
+      $user = $this->fetch('/user', $account);
       $url = @$user['html_url'];
       if (!isset($url)) {
         throw new \RuntimeException("No html_url field in GitHub '/user' endpoint response");

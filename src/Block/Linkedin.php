@@ -8,11 +8,11 @@ class Linkedin extends Block {
     return array('r_basicprofile', 'r_fullprofile');
   }
 
-  public function render() {
+  public function render(\stdClass $account) {
     $response = null; {
       $fields = 'num-connections,num-connections-capped,educations,positions,public-profile-url';
       $url = "people/~:({$fields})?format=json";
-      $response = $this->fetch($url);
+      $response = $this->fetch($url, $account);
     }
 
     if (isset($response['numConnections'])) {

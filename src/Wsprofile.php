@@ -6,7 +6,6 @@ use Drupal\wconsumer\Wconsumer;
 
 
 
-
 class Wsprofile {
   private static $instance;
 
@@ -43,6 +42,7 @@ class Wsprofile {
           "@service profile",
           array('@service' => $service->getMeta()->niceName)
         ),
+        'cache' => DRUPAL_CACHE_CUSTOM,
       );
     }
 
@@ -50,6 +50,11 @@ class Wsprofile {
   }
 
   public function viewBlock($name) {
+    $account = menu_get_object('user');
+    if (!$account || !$account->uid) {
+      return null;
+    }
+
     $block = @$this->blocks[$name];
     if (!isset($block)) {
       return null;
@@ -58,7 +63,7 @@ class Wsprofile {
     try {
       return array(
         'subject' => $block->getService()->getMeta()->niceName,
-        'content' => $block->render(),
+        'content' => $block->render($account),
       );
     }
     catch (\Exception $e) {
@@ -67,9 +72,15 @@ class Wsprofile {
   }
 
   private function __construct() {
-    $this->blocks = array(
+    $blocks = array(
       Wconsumer::$linkedin->getName() => new Block\Linkedin(Wconsumer::$linkedin),
       Wconsumer::$github->getName()   => new Block\Github(Wconsumer::$github),
     );
+
+    foreach ($blocks as &$block) {
+      $block = new Block\CacheWrapper($block);
+    }
+
+    $this->blocks = $blocks;
   }
 }
