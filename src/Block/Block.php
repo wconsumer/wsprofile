@@ -1,7 +1,7 @@
 <?php
 namespace Wsprofile\Block;
 
-use Drupal\wconsumer\Service\Base as Service;
+use Drupal\wconsumer\Service\Service;
 
 
 
